@@ -20,7 +20,7 @@ check: pdf        ## everything CI runs before deploy
 
 deploy: check     ## manual deploy from this machine, same rsync as CI: make deploy DEPLOY_HOST=...
 	@test -n "$(DEPLOY_HOST)" || { echo "set DEPLOY_HOST" >&2; exit 1; }
-	rsync -rlz --delete --chmod=D755,F644 -e "ssh -i $(DEPLOY_KEY) -o IdentitiesOnly=yes" $(PUBLIC)/ site-deploy@$(DEPLOY_HOST):
+	rsync -rlz --delete -e "ssh -i $(DEPLOY_KEY) -o IdentitiesOnly=yes" $(PUBLIC)/ site-deploy@$(DEPLOY_HOST):
 
 clean:
 	rm -rf $(PUBLIC) resources/_gen .hugo_build.lock
