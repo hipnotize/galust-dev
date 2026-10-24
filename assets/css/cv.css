@@ -1,0 +1,46 @@
+/* CV layout. On the site it inherits theme colors; on the print page (.cv-print) it is black on white A4. */
+.cv { font-size: 0.95rem; line-height: 1.5; }
+.cv h1 { font-size: 2.2rem; margin: 0; }
+.cv-role { font-size: 1.1rem; margin: 4px 0 6px; }
+.cv-contacts { color: var(--muted, #333); margin: 0; }
+.cv-contacts span + span::before { content: "·"; margin: 0 6px; opacity: 0.6; }
+.cv h2 {
+  font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted, #444);
+  margin: 26px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border, #bbb);
+}
+.cv p { margin: 0; }
+.cv-job { margin: 0 0 14px; }
+.cv-job-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.cv-job-head b { font-size: 1.05em; color: var(--heading, #000); }
+.cv-dates, .cv-company, .cv-stack { color: var(--muted, #444); }
+.cv-dates { white-space: nowrap; }
+.cv ul { margin: 4px 0 0; padding-left: 20px; }
+.cv li { margin: 0 0 3px; }
+.cv-stack { margin-top: 4px; }
+.cv-skills p { margin-bottom: 4px; }
+
+/* print page */
+@page { size: A4; margin: 11mm 14mm 10mm; }
+.cv-print {
+  margin: 0; color: #1a1a1a; background: #fff;
+  font: 9.3pt/1.34 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.cv-print .cv { font-size: inherit; line-height: inherit; }
+.cv-print a { color: inherit; text-decoration: none; border-bottom: 0.5pt solid #9a9a9a; }
+.cv-print .cv h1 { font-size: 21pt; line-height: 1.1; letter-spacing: -0.2pt; }
+.cv-print .cv-role { font-size: 11pt; margin: 3pt 0 5pt; color: #333; }
+.cv-print .cv-contacts { color: #333; }
+.cv-print .cv-contacts span + span::before { margin: 0 5pt; color: #999; opacity: 1; }
+.cv-print .cv h2 { font-size: 9pt; letter-spacing: 0.9pt; color: #444; margin: 10pt 0 4pt; padding-bottom: 2pt; border-bottom: 0.6pt solid #bbb; }
+.cv-print .cv-job { margin: 0 0 7pt; }
+.cv-print .cv-job-head, .cv-print .cv-company { break-after: avoid; }
+.cv-print .cv-job-head { flex-wrap: nowrap; gap: 10pt; }
+.cv-print .cv-job-head b { font-size: 10.2pt; color: #1a1a1a; }
+.cv-print .cv-dates, .cv-print .cv-company, .cv-print .cv-stack { color: #444; }
+.cv-print .cv-company { margin-bottom: 2pt; }
+.cv-print .cv ul { margin: 2pt 0 0; padding-left: 12pt; }
+.cv-print .cv li { margin: 0 0 1.6pt; break-inside: avoid; }
+.cv-print .cv-stack { margin-top: 2.5pt; }
+.cv-print .cv-stack b, .cv-print .cv-skills b { font-weight: 600; color: #333; }
+.cv-print .cv-skills p { margin-bottom: 2.2pt; }

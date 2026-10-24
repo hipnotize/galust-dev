@@ -1,0 +1,27 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- $title := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) }}
+  <title>{{ $title }}</title>
+  {{- $desc := or .Description .Summary site.Params.description | plainify | truncate 160 }}
+  <meta name="description" content="{{ $desc }}">
+  <meta name="author" content="{{ site.Params.author }}">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:type" content="{{ cond .IsPage "article" "website" }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  {{- with .OutputFormats.Get "rss" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+  {{- end }}
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+    })();
+  </script>
+  {{- $css := slice (resources.Get "css/main.css") (resources.Get "css/syntax.css") (resources.Get "css/cv.css") | resources.Concat "css/site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+</head>

@@ -1,0 +1,54 @@
+{{- /* Renders data/cv.yaml. Used by the /cv/ page and by the print page that CI turns into the PDF. */ -}}
+{{- $cv := hugo.Data.cv }}
+<div class="cv">
+  <header class="cv-header">
+    <h1>{{ $cv.name }}</h1>
+    <p class="cv-role">{{ $cv.role }}</p>
+    <p class="cv-contacts">
+      <span>{{ $cv.location }}</span>
+      <span><a href="mailto:{{ $cv.email }}">{{ $cv.email }}</a></span>
+      {{- with $cv.phone }}<span>{{ . }}</span>{{ end }}
+      <span>Telegram <a href="https://t.me/{{ $cv.telegram }}">@{{ $cv.telegram }}</a></span>
+      <span><a href="https://github.com/{{ $cv.github }}">github.com/{{ $cv.github }}</a></span>
+      {{- with $cv.website }}<span><a href="https://{{ . }}">{{ . }}</a></span>{{ end }}
+    </p>
+  </header>
+
+  <h2>Summary</h2>
+  <p>{{ $cv.summary }}</p>
+
+  <h2>Experience</h2>
+  {{- range $cv.experience }}
+  <div class="cv-job">
+    <div class="cv-job-head"><b>{{ .title }}</b><span class="cv-dates">{{ .dates }}</span></div>
+    <p class="cv-company">{{ .company }}{{ with .note }} — {{ . }}{{ end }}</p>
+    <ul>{{ range .bullets }}<li>{{ . }}</li>{{ end }}</ul>
+    {{- with .stack }}<p class="cv-stack"><b>Stack:</b> {{ delimit . ", " }}</p>{{ end }}
+  </div>
+  {{- end }}
+
+  {{- with $cv.projects }}
+  <h2>Projects</h2>
+  {{- range . }}
+  <div class="cv-job">
+    <div class="cv-job-head"><b>{{ .name }}{{ with .url }} — <a href="{{ . }}">{{ replaceRE "^https?://" "" . }}</a>{{ end }}</b><span class="cv-dates">{{ .dates }}</span></div>
+    <ul>{{ range .bullets }}<li>{{ . }}</li>{{ end }}</ul>
+  </div>
+  {{- end }}
+  {{- end }}
+
+  <h2>Skills</h2>
+  <div class="cv-skills">
+    {{- range $cv.skills }}
+    <p><b>{{ .group }}:</b> {{ delimit .items ", " }}</p>
+    {{- end }}
+  </div>
+
+  <h2>Education</h2>
+  {{- range $cv.education }}
+  <p><b>{{ .school }}</b> — {{ .field }}, {{ .year }}</p>
+  {{- end }}
+
+  <h2>Languages</h2>
+  <p>{{ delimit $cv.languages " · " }}</p>
+</div>

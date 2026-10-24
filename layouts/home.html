@@ -1,0 +1,104 @@
+{{ define "main" }}
+{{- $home := hugo.Data.home }}
+<section class="hero">
+  <div>
+    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>on call · DevOps engineer</p>
+    <h1>{{ replace $home.tagline "bring it back" "<span class=\"hl\">bring it back</span>" | safeHTML }}</h1>
+    <p class="lead">{{ $home.lead }}</p>
+    <div class="actions">
+      <a class="button primary" href="{{ "/cv/" | relURL }}">View CV</a>
+      <a class="button" href="{{ site.Params.cvPdf | relURL }}" download>Download PDF</a>
+      <a class="button" href="{{ site.Params.telegram }}">Telegram</a>
+    </div>
+  </div>
+
+  <div class="terminal" aria-label="Terminal introduction">
+    <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>galust@prod: ~</span></div>
+    <pre>
+      {{- range $home.terminal -}}
+<span class="tline" data-cmd><span class="ps1">$ </span><span class="cmd">{{ .cmd }}</span></span><span class="tline out">{{ .out }}</span>
+      {{- end -}}
+<span class="tline" data-end><span class="ps1">$ </span><span class="caret" aria-hidden="true"></span></span></pre>
+  </div>
+</section>
+
+<section class="section" aria-label="In numbers">
+  <ul class="stats">
+    {{- range $home.stats }}
+    <li class="stat"><b>{{ .value }}</b><span>{{ .label }}</span></li>
+    {{- end }}
+  </ul>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">incident log</h2>
+    <span class="muted">real cases · symptom → root cause → fix</span>
+  </div>
+  <ul class="incidents">
+    {{- range $home.incidents }}
+    <li class="incident">
+      <div class="incident-head"><span class="sev {{ lower .sev }}">{{ .sev }}</span><span>{{ .id }}</span><span class="resolved">● resolved</span></div>
+      <h3>{{ .title }}</h3>
+      <dl>
+        <dt>symptom</dt><dd>{{ .symptom }}</dd>
+        <dt>cause</dt><dd>{{ .cause }}</dd>
+        <dt>fix</dt><dd>{{ .fix }}</dd>
+        <dt>result</dt><dd>{{ .result }}</dd>
+      </dl>
+      {{- with .link }}<a class="more" href="{{ . | relURL }}">read the write-up →</a>{{ end }}
+    </li>
+    {{- end }}
+  </ul>
+</section>
+
+{{- $posts := where site.RegularPages "Section" "blog" }}
+{{- with $posts }}
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">latest posts</h2>
+    <a href="{{ "/blog/" | relURL }}">ls blog/ →</a>
+  </div>
+  {{ partial "post-list.html" (first 5 .) }}
+</section>
+{{- end }}
+
+{{- with hugo.Data.cv.projects }}
+<section class="section">
+  <div class="section-head"><h2 class="section-title">side projects</h2></div>
+  <ul class="cards">
+    {{- range . }}
+    <li class="card">
+      <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
+      <p>{{ index .bullets 0 }}</p>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
+
+<script>
+  (function () {
+    var term = document.querySelector(".terminal");
+    if (!term || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+    var lines = Array.prototype.slice.call(term.querySelectorAll(".tline"));
+    term.classList.add("typing");
+    var i = 0;
+    function next() {
+      if (i >= lines.length) return;
+      var line = lines[i++];
+      var cmd = line.hasAttribute("data-cmd") && line.querySelector(".cmd");
+      line.classList.add("shown");
+      if (!cmd) { setTimeout(next, 180); return; }
+      var full = cmd.textContent, n = 0;
+      cmd.textContent = "";
+      (function type() {
+        cmd.textContent = full.slice(0, ++n);
+        if (n < full.length) setTimeout(type, 28 + Math.random() * 40);
+        else setTimeout(next, 260);
+      })();
+    }
+    setTimeout(next, 350);
+  })();
+</script>
+{{ end }}

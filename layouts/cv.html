@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="cv-actions">
+  <a class="button primary" href="{{ site.Params.cvPdf | relURL }}" download>Download PDF</a>
+  <span class="muted">Same content as this page, generated from it on every deploy.</span>
+</div>
+<div class="cv-sheet">{{ partial "cv.html" . }}</div>
+{{ end }}

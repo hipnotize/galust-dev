@@ -1,0 +1,111 @@
+# Single source for the /cv/ page and the PDF. Edit here, push, and CI rebuilds both.
+name: "Galust Arakelyan"
+title: "DevOps Engineer"
+role: "DevOps Engineer · Kubernetes · Cloud & On-Prem Infrastructure"
+location: "Remote, UTC+4"
+email: "galust.arakelyan25@gmail.com"
+phone: ""
+telegram: "thelastbroken"
+github: "hipnotize"
+website: "galust-dev.ru"
+
+summary: "DevOps engineer with nearly 7 years in Linux infrastructure and DevOps, currently running production Kubernetes for a fintech lending group across Yandex Cloud, VMware Cloud Director and bare metal. When the cloud provider lost two of three availability zones, I backed up production and restored Vault, Redis, RabbitMQ and 125 services on new on-prem Kubernetes within one day. Hands-on with Kubernetes, Terraform, Vault, GitLab CI, Argo CD and stateful services: PostgreSQL, RabbitMQ, Redis, Kafka/Redpanda. Mentor at an online DevOps school with about 100 students."
+
+experience:
+  - title: "DevOps Engineer"
+    company: "IT Smart Finance"
+    note: "fintech lending group (JoyMoney, Boostr, Nibble)"
+    dates: "May 2026 – Present"
+    bullets:
+      - "Backed up production after the cloud provider lost two of three availability zones and worker nodes had no internet access: ran Velero outside the cluster to capture the full 349-workload cluster (10,466 objects, 0 errors), saved all 123 production images (19.7 GB after layer dedup) and Vault, Redis, RabbitMQ and Redpanda data, all checksum-verified."
+      - "Restored production on new on-prem Kubernetes (Talos, Ceph) within one day: Vault from a Raft snapshot, Redis (425K keys), RabbitMQ (781 queues, 5.9M messages), mTLS proxies to credit bureaus and banks, and 125 services staged safely at zero replicas."
+      - "Prepared the production move to VMware Cloud Director: sized the platform from real peak usage (10 VMs, 100 vCPU, 328 GB RAM), built a 3-node Vault Raft cluster, RabbitMQ, Redpanda with SCRAM, ACLs and mTLS, and Redis, and staged 273 deployments and 347 ingresses through a Velero pipeline."
+      - "Migrated Vault from file storage to Raft: moved 47.6K keys with 13.7 minutes of downtime and zero drift, added scheduled snapshots to S3 and verified the chain end to end, restore included."
+      - "Built a new production environment for a credit-bureau reporting product in 1.5 days: migrated 3 PostgreSQL databases (54 GB, 351M rows, zero mismatches), set up Kubernetes 1.36 on Talos, Vault, RabbitMQ and GOST mTLS to credit bureaus."
+      - "Moved 16 stateful components (Redis, Redis Cluster, RabbitMQ) in 4 environments to new image sources after the Bitnami catalog change, 7 of them in production night windows, with disk snapshots before every step and no data loss."
+      - "Rolled out logging on Loki and Grafana Alloy with MinIO storage and 30-day retention, then cut its resource budget 4x after load measurements."
+      - "Root-caused about 50 production and staging incidents from evidence: apiserver audit logs, Loki, OpenSearch offsets, Helm history. Examples: a Redis Sentinel OOM caused by chart drift (192 MiB in Git vs 4 GiB live), Terraform state 503s from NO_PROXY in the runner config, and 12,903 log records hidden by lost trace fields, recovered with OpenSearch ingest pipelines."
+      - "Maintained shared GitLab CI templates and Terraform pipelines: fixed the shared DB-migration job, restored Terraform CI in 6+ projects and added release and manual deploy jobs for 3 isolated QA environments (Istio Ambient, Vault policies via Terraform)."
+      - "Automated bulk changes with dry-run, check-and-set writes and rollback logs: updated 246 Vault secrets with 0 errors and fixed post-migration 403s on 132 of 136 ingresses."
+    stack: ["Kubernetes (Managed, Talos)", Yandex Cloud, VMware Cloud Director, Terraform, GitLab CI, Helm, werf, Vault, Velero, PostgreSQL, RabbitMQ, Redpanda, Redis, Loki, Grafana, MinIO, Python]
+
+  - title: "Lead DevOps / MLOps Engineer"
+    company: "Sber"
+    note: "banking and technology group"
+    dates: "Mar 2026 – Apr 2026"
+    bullets:
+      - "Built and maintained Jenkins pipelines that build, test and deploy services and ML models to Kubernetes."
+      - "Delivered workloads through Argo CD and Helm (GitOps), keeping environments consistent from test to production."
+      - "Set up Prometheus metrics and alerting for platform and model-serving services; worked with data scientists on packaging and shipping models."
+    stack: [Kubernetes, Jenkins, Argo CD, Helm, Prometheus, Grafana, Docker]
+
+  - title: "DevOps Engineer"
+    company: "MegaFon"
+    note: "mobile network operator"
+    dates: "Jul 2025 – Mar 2026"
+    bullets:
+      - "Administered a fleet of about 500 Linux servers, including DNS recursors, for the operator's internal infrastructure."
+      - "Operated authoritative DNS on BIND (1 primary, 3 secondaries) with BGP routing (BIRD) and NTP."
+      - "Deployed and supported the in-house DNS self-service app: admins and engineers manage records and zones through it instead of editing servers by hand."
+      - "Automated server configuration with Ansible; maintained Zabbix and Grafana monitoring for DNS and platform services."
+    stack: [Linux, BIND, BIRD, NTP, Ansible, Zabbix, Grafana, Bash]
+
+  - title: "DevOps Engineer"
+    company: "Sheremetyevo International Airport"
+    dates: "Jul 2024 – Jul 2025"
+    bullets:
+      - "Supported flight schedule and resource planning systems running on the airport's on-prem Kubernetes."
+      - "Upgraded the cluster from Kubernetes 1.23 to 1.29 one minor version at a time, following the version skew policy: etcd snapshot before each step, control plane first, then workers drained and upgraded node by node."
+      - "Before each step, migrated manifests and Helm charts off the APIs removed between 1.25 and 1.29, so workloads kept deploying after every upgrade."
+    stack: [Kubernetes, Helm, Docker, Linux]
+
+  - title: "Linux Administrator → DevOps Engineer"
+    company: "Vnukovo International Airport"
+    dates: "Jan 2020 – Jun 2024"
+    bullets:
+      - "Administered Linux servers for internal airport systems."
+      - "Containerized in-house schedule-related applications with Docker, then moved them to an on-prem Kubernetes cluster."
+
+  - title: "DevOps Mentor & Senior Curator"
+    company: "ProstoDevops"
+    note: "online DevOps school"
+    dates: "2026 – Present · part-time"
+    bullets:
+      - "Oversee about 100 students in two cohorts as senior curator; my own group of 10 closed 59 of 60 technical defenses, the best result among groups, and 3 students were hired during the course."
+      - "Created 20 lesson decks (487 slides) and hands-on labs: Linux, networking, Docker, Kubernetes (kubeadm cluster from scratch, RBAC, etcd backup, upgrades), Terraform, Ansible, Argo CD."
+      - "Wrote the curator handbook; run weekly curator syncs, 1:1 reviews and mock interviews."
+
+projects:
+  - name: "Xelvix VPN"
+    url: "https://xelvix.ru"
+    dates: "2026 – Present · own project"
+    bullets:
+      - "Built and run a commercial multi-node VPN service: a master and 3 nodes on VLESS + Reality (3x-ui), about 50 paying users and 25 online daily."
+      - "Wrote Python services for payments, subscription links in 5 client formats with split routing, and node monitoring with Telegram alerts; Nginx, certbot and systemd on every node."
+
+skills:
+  - group: "Containers & orchestration"
+    items: [Kubernetes, Managed Kubernetes, Talos Linux, Kubespray, kubeadm, Helm, werf, Argo CD, Docker, containerd, Istio, ingress-nginx, Traefik, MetalLB, Cilium, Calico, cert-manager, HPA, StatefulSets]
+  - group: "Cloud & virtualization"
+    items: ["Yandex Cloud (AWS-like stack: Managed Kubernetes, Compute, VPC, IAM, Object Storage, managed PostgreSQL/MySQL/OpenSearch)", "S3 API (AWS CLI, boto3)", VMware vSphere/ESXi, VMware Cloud Director, MinIO, Ceph, Container Registry, Harbor]
+  - group: "IaC & CI/CD"
+    items: [Terraform, Ansible, "GitLab CI (shared templates, Runners)", "Jenkins (Groovy pipelines)", Argo CD, GitOps, Helm charts]
+  - group: "Observability"
+    items: [Prometheus, Alertmanager, Grafana, Loki, Grafana Alloy, Fluent Bit, "OpenSearch / ELK (Filebeat, Logstash, ingest pipelines)", Zabbix]
+  - group: "Security & secrets"
+    items: ["HashiCorp Vault (Raft, Kubernetes auth, Agent Injector)", Keycloak, Pinniped, OIDC/Dex, mTLS, TLS/PKI, RBAC]
+  - group: "Data & messaging"
+    items: [PostgreSQL, "Redis (Sentinel, Cluster)", RabbitMQ, Kafka/Redpanda, MySQL, MongoDB]
+  - group: "Backup & DR"
+    items: [Velero, Kopia, Raft snapshots, pg_dump/pg_restore]
+  - group: "Practices"
+    items: [Disaster recovery, high availability, incident response and RCA, capacity planning, cloud migration, Infrastructure as Code, runbooks]
+  - group: "Linux & networking"
+    items: [Linux, systemd, Bash, Python, DNS (BIND), BGP (BIRD), Nginx, HAProxy, TCP/IP, OpenVPN]
+
+education:
+  - school: "Moscow State Technical University of Civil Aviation"
+    field: "Air Navigation"
+    year: 2020
+
+languages: ["English — C1", "Russian — native", "Armenian — fluent"]

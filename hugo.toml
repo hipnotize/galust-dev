@@ -1,0 +1,42 @@
+baseURL = "https://galust-dev.ru/"
+locale = "en"
+title = "Galust Arakelyan"
+enableRobotsTXT = true
+
+[params]
+  description = "DevOps engineer: Kubernetes, cloud and on-prem infrastructure, disaster recovery."
+  author = "Galust Arakelyan"
+  github = "https://github.com/hipnotize"
+  telegram = "https://t.me/thelastbroken"
+  cvPdf = "/cv/Galust_Arakelyan_DevOps.pdf"
+
+[menus]
+  [[menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[menus.main]]
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 20
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 30
+  [[menus.main]]
+    name = "CV"
+    pageRef = "/cv"
+    weight = 40
+
+[taxonomies]
+  tag = "tags"
+
+[markup.highlight]
+  noClasses = false
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]

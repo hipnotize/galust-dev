@@ -1,0 +1,28 @@
+<header class="site-header">
+  <a class="prompt" href="{{ "/" | relURL }}" aria-label="{{ site.Title }}, home"><span class="user">galust@prod</span>:<span class="path">~</span>$<span class="cursor" aria-hidden="true"></span></a>
+  <nav class="site-nav" aria-label="Main">
+    <ul class="menu">
+      {{- $current := . }}
+      {{- range site.Menus.main }}
+        {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+        {{- if and (eq .PageRef "/") (not $current.IsHome) }}{{ $active = false }}{{ end }}
+        <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ if eq .PageRef "/" }}~{{ else }}./{{ lower .Name }}{{ end }}</a></li>
+      {{- end }}
+    </ul>
+    <ul class="social">
+      <li><a href="{{ site.Params.github }}" rel="me">github</a></li>
+      <li><a href="{{ site.Params.telegram }}" rel="me">telegram</a></li>
+    </ul>
+    <button class="theme-toggle" type="button" aria-label="Toggle light mode" title="Toggle light mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+    </button>
+  </nav>
+</header>
+<script>
+  document.querySelector(".theme-toggle").addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+</script>

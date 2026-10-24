@@ -1,0 +1,7 @@
+{{ define "main" }}
+<header class="list-header">
+  <h1>Tag: {{ .Title }}</h1>
+  <a class="aside-link" href="{{ "/tags/" | relURL }}">View all tags</a>
+</header>
+{{ partial "post-list.html" .Pages.ByDate.Reverse }}
+{{ end }}

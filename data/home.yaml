@@ -1,0 +1,56 @@
+# Home page: terminal intro, stats and the incident log. Numbers come from real work, see data/cv.yaml.
+tagline: "I keep production running — and bring it back when it falls."
+lead: "DevOps engineer working with Kubernetes, cloud and on-prem infrastructure. Currently running production for a fintech lending group and mentoring future DevOps engineers at ProstoDevops."
+
+terminal:
+  - cmd: "whoami"
+    out: |-
+      Galust Arakelyan — DevOps engineer
+  - cmd: "kubectl get engineer galust -o wide"
+    out: |-
+      NAME     EXPERIENCE   CLUSTERS   INCIDENTS   STUDENTS   STATUS
+      galust   ~7y          8          ~50         ~100       Running
+  - cmd: "cat focus.txt"
+    out: |-
+      disaster recovery · kubernetes · vault · terraform · gitlab ci
+
+stats:
+  - value: "~7"
+    label: "years in Linux infrastructure and DevOps"
+  - value: "8"
+    label: "Kubernetes clusters run hands-on"
+  - value: "~50"
+    label: "incidents root-caused from evidence"
+  - value: "~100"
+    label: "students mentored"
+
+incidents:
+  - id: "INC-01"
+    sev: "SEV-1"
+    title: "Cloud provider lost two of three availability zones"
+    symptom: "Production down; surviving worker nodes had no internet access, provider storage read-only."
+    cause: "Regional outage at the provider; the NAT gateway lived in a dead zone."
+    fix: "Ran Velero outside the cluster to back up 10,466 objects, saved 123 images and Vault, Redis, RabbitMQ, Redpanda data, then restored on new on-prem Kubernetes."
+    result: "Production state restored on Talos within one day."
+    link: "/blog/velero-without-internet/"
+  - id: "INC-02"
+    sev: "SEV-2"
+    title: "Redis Sentinel OOM during an image update"
+    symptom: "A production Redis node went OOM right after the rollout."
+    cause: "Chart drift: the new chart applied its default 192 MiB limit while the live pods needed 4 GiB."
+    fix: "Rolled back, moved the real limits into Git, cleaned the stuck Helm and Terraform state."
+    result: "3/3 nodes back, Sentinel quorum 3."
+  - id: "INC-03"
+    sev: "SEV-3"
+    title: "Terraform plan failing with 503 in CI"
+    symptom: "Every plan in one project died while reading remote state from GitLab."
+    cause: "The runner had an uppercase NO_PROXY without the GitLab host, so state calls went through the proxy."
+    fix: "Set a project-level NO_PROXY and proved separately that the API was dropping pipeline variables."
+    result: "State answers in ~0.07 s, pipeline green."
+  - id: "INC-04"
+    sev: "SEV-2"
+    title: "403 on every allow-listed ingress after migration"
+    symptom: "Users behind VPN got 403 from all ingresses with an IP allow-list."
+    cause: "externalTrafficPolicy: Cluster hid the client address, so allow-lists only saw node IPs."
+    fix: "Switched to Local and scripted allow-list updates with a backup of previous values."
+    result: "132 of 136 ingresses fixed in one pass."
