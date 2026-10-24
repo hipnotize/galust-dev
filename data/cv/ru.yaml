@@ -1,0 +1,111 @@
+# Русская версия резюме: страница /ru/cv/ и PDF. Английская — data/cv/en.yaml, держать их в одном содержании.
+name: "Галуст Аракелян"
+title: "DevOps-инженер"
+role: "DevOps-инженер · Kubernetes · облака и своё железо"
+location: "Удалённо, UTC+4"
+email: "galust.arakelyan25@gmail.com"
+phone: ""
+telegram: "thelastbroken"
+github: "hipnotize"
+website: "galust-dev.ru"
+
+summary: "DevOps-инженер, почти 7 лет в Linux-инфраструктуре и DevOps. Сейчас отвечаю за прод на Kubernetes в финтех-группе: Yandex Cloud, VMware Cloud Director и своё железо. Когда облачный провайдер потерял две из трёх зон доступности, снял копию прода и за один день поднял Vault, Redis, RabbitMQ и 125 сервисов на новом Kubernetes в офисе. Работаю руками с Kubernetes, Terraform, Vault, GitLab CI, Argo CD и сервисами с состоянием: PostgreSQL, RabbitMQ, Redis, Kafka/Redpanda. Ментор в онлайн-школе DevOps, около 100 учеников."
+
+experience:
+  - title: "DevOps-инженер"
+    company: "IT Smart Finance"
+    note: "финтех-группа (JoyMoney, Boostr, Nibble)"
+    dates: "май 2026 — н. в."
+    bullets:
+      - "Снял копию прода, когда провайдер потерял две из трёх зон, а у нод не было интернета: запустил Velero вне кластера и забрал весь кластер на 349 нагрузок (10 466 объектов, 0 ошибок), все 123 прод-образа (19,7 ГБ после дедупликации слоёв) и данные Vault, Redis, RabbitMQ и Redpanda, всё со сверкой контрольных сумм."
+      - "За один день поднял прод на новом Kubernetes в офисе (Talos, Ceph): Vault из raft-снапшота, Redis (425 тыс. ключей), RabbitMQ (781 очередь, 5,9 млн сообщений), mTLS-прокси к бюро кредитных историй и банкам и 125 сервисов при нуле реплик."
+      - "Подготовил переезд прода в VMware Cloud Director: рассчитал ёмкость по реальным пикам (10 ВМ, 100 vCPU, 328 ГБ RAM), поднял Vault на 3 узлах Raft, RabbitMQ, Redpanda с SCRAM, ACL и mTLS, Redis, и залил 273 деплоймента и 347 ингрессов через Velero."
+      - "Перевёл Vault с file storage на Raft: 47,6 тыс. ключей, простой 13,7 минуты, 0 расхождений; настроил снапшоты в S3 по расписанию и проверил цепочку целиком, включая восстановление."
+      - "За полтора дня собрал с нуля прод-контур для отчётности в бюро кредитных историй: перенёс 3 базы PostgreSQL (54 ГБ, 351 млн строк, 0 расхождений), поднял Kubernetes 1.36 на Talos, Vault, RabbitMQ и ГОСТ-mTLS к бюро."
+      - "Перевёл 16 компонентов с состоянием (Redis, Redis Cluster, RabbitMQ) в 4 окружениях на новые источники образов после изменений в каталоге Bitnami, 7 из них на проде в ночные окна, со снимками дисков перед каждым шагом и без потери данных."
+      - "Внедрил логирование на Loki и Grafana Alloy с хранением в MinIO и сроком 30 дней, после замеров нагрузки урезал бюджет ресурсов в 4 раза."
+      - "Разобрал около 50 инцидентов на проде и стейдже по фактам: аудит apiserver, Loki, смещения в OpenSearch, история Helm. Например: OOM Redis Sentinel из-за дрейфа чарта (192 MiB в Git против 4 GiB вживую), 503 у Terraform state из-за NO_PROXY в раннере и 12 903 записи логов, скрытые из-за потерянных полей трассировки, — вернул через ingest pipelines OpenSearch."
+      - "Поддерживал общие шаблоны GitLab CI и пайплайны Terraform: починил общую джобу миграций БД, вернул Terraform CI в 6+ проектах, добавил релизные и ручные деплои для 3 изолированных QA-стендов (Istio Ambient, политики Vault через Terraform)."
+      - "Автоматизировал массовые изменения с dry-run, записью через проверку версии и журналом отката: обновил 246 секретов Vault без ошибок и исправил 403 после переезда на 132 из 136 ингрессов."
+    stack: ["Kubernetes (Managed, Talos)", Yandex Cloud, VMware Cloud Director, Terraform, GitLab CI, Helm, werf, Vault, Velero, PostgreSQL, RabbitMQ, Redpanda, Redis, Loki, Grafana, MinIO, Python]
+
+  - title: "Ведущий DevOps / MLOps-инженер"
+    company: "Сбер"
+    note: "банковская и технологическая группа"
+    dates: "март 2026 — апрель 2026"
+    bullets:
+      - "Писал и поддерживал пайплайны Jenkins для сборки, тестов и деплоя сервисов и ML-моделей в Kubernetes."
+      - "Выкатывал нагрузки через Argo CD и Helm (GitOps), держал окружения одинаковыми от теста до прода."
+      - "Настроил метрики и алерты Prometheus для платформы и сервисов с моделями; вместе с дата-сайентистами упаковывал и выкатывал модели."
+    stack: [Kubernetes, Jenkins, Argo CD, Helm, Prometheus, Grafana, Docker]
+
+  - title: "DevOps-инженер"
+    company: "МегаФон"
+    note: "оператор мобильной связи"
+    dates: "июль 2025 — март 2026"
+    bullets:
+      - "Администрировал парк около 500 Linux-серверов, включая DNS-рекурсоры, во внутренней инфраструктуре оператора."
+      - "Вёл авторитетный DNS на BIND (1 primary, 3 secondary) с BGP-маршрутизацией (BIRD) и NTP."
+      - "Развернул и поддерживал внутреннее приложение для DNS: админы и инженеры управляют записями и зонами через него, а не правят серверы руками."
+      - "Автоматизировал настройку серверов на Ansible; поддерживал мониторинг DNS и платформенных сервисов в Zabbix и Grafana."
+    stack: [Linux, BIND, BIRD, NTP, Ansible, Zabbix, Grafana, Bash]
+
+  - title: "DevOps-инженер"
+    company: "Международный аэропорт Шереметьево"
+    dates: "июль 2024 — июль 2025"
+    bullets:
+      - "Поддерживал системы расписания рейсов и планирования ресурсов на внутреннем Kubernetes аэропорта."
+      - "Обновил кластер с Kubernetes 1.23 до 1.29 по одной минорной версии по version skew policy: снапшот etcd перед каждым шагом, сначала control plane, затем воркеры по одному через drain."
+      - "Перед каждым шагом переводил манифесты и Helm-чарты с API, удалённых в 1.25–1.29, чтобы деплои работали после каждого обновления."
+    stack: [Kubernetes, Helm, Docker, Linux]
+
+  - title: "Linux-администратор → DevOps-инженер"
+    company: "Международный аэропорт Внуково"
+    dates: "январь 2020 — июнь 2024"
+    bullets:
+      - "Администрировал Linux-серверы внутренних систем аэропорта."
+      - "Упаковал внутренние приложения, связанные с расписанием, в Docker, затем перенёс их на внутренний Kubernetes."
+
+  - title: "Ментор и старший куратор"
+    company: "ProstoDevops"
+    note: "онлайн-школа DevOps"
+    dates: "2026 — н. в. · частичная занятость"
+    bullets:
+      - "Как старший куратор веду около 100 учеников в двух потоках; моя группа из 10 человек закрыла 59 из 60 технических защит — лучший результат среди групп, 3 ученика устроились на работу во время курса."
+      - "Сделал 20 колод уроков (487 слайдов) и практикумы: Linux, сети, Docker, Kubernetes (кластер на kubeadm с нуля, RBAC, бэкап etcd, обновления), Terraform, Ansible, Argo CD."
+      - "Написал регламент кураторов; провожу еженедельные созвоны кураторов, ревью один на один и пробные собеседования."
+
+projects:
+  - name: "Xelvix VPN"
+    url: "https://xelvix.ru"
+    dates: "2026 — н. в. · свой проект"
+    bullets:
+      - "Построил и веду коммерческий VPN-сервис на нескольких нодах: мастер и 3 ноды на VLESS + Reality (3x-ui), около 50 платящих пользователей и 25 онлайн в сутки."
+      - "Написал сервисы на Python для оплаты, ссылок подписки в 5 форматах клиентов с раздельной маршрутизацией и мониторинга нод с алертами в Telegram; Nginx, certbot и systemd на каждой ноде."
+
+skills:
+  - group: "Контейнеры и оркестрация"
+    items: [Kubernetes, Managed Kubernetes, Talos Linux, Kubespray, kubeadm, Helm, werf, Argo CD, Docker, containerd, Istio, ingress-nginx, Traefik, MetalLB, Cilium, Calico, cert-manager, HPA, StatefulSets]
+  - group: "Облака и виртуализация"
+    items: ["Yandex Cloud (аналог стека AWS: Managed Kubernetes, Compute, VPC, IAM, Object Storage, managed PostgreSQL/MySQL/OpenSearch)", "S3 API (AWS CLI, boto3)", VMware vSphere/ESXi, VMware Cloud Director, MinIO, Ceph, Container Registry, Harbor]
+  - group: "IaC и CI/CD"
+    items: [Terraform, Ansible, "GitLab CI (общие шаблоны, раннеры)", "Jenkins (пайплайны на Groovy)", Argo CD, GitOps, Helm-чарты]
+  - group: "Наблюдаемость"
+    items: [Prometheus, Alertmanager, Grafana, Loki, Grafana Alloy, Fluent Bit, "OpenSearch / ELK (Filebeat, Logstash, ingest pipelines)", Zabbix]
+  - group: "Безопасность и секреты"
+    items: ["HashiCorp Vault (Raft, Kubernetes auth, Agent Injector)", Keycloak, Pinniped, OIDC/Dex, mTLS, TLS/PKI, RBAC]
+  - group: "Данные и брокеры"
+    items: [PostgreSQL, "Redis (Sentinel, Cluster)", RabbitMQ, Kafka/Redpanda, MySQL, MongoDB]
+  - group: "Бэкапы и DR"
+    items: [Velero, Kopia, raft-снапшоты, pg_dump/pg_restore]
+  - group: "Практики"
+    items: [аварийное восстановление, отказоустойчивость, разбор инцидентов и RCA, расчёт ёмкости, переезд между облаками, Infrastructure as Code, ранбуки]
+  - group: "Linux и сети"
+    items: [Linux, systemd, Bash, Python, DNS (BIND), BGP (BIRD), Nginx, HAProxy, TCP/IP, OpenVPN]
+
+education:
+  - school: "Московский государственный технический университет гражданской авиации"
+    field: "аэронавигация"
+    year: 2020
+
+languages: ["русский — родной", "армянский — свободно", "английский — C1"]

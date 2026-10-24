@@ -1,0 +1,15 @@
+{{- /* EN | RU switch: links to the same page in the other language, or to that language's home if there is no translation. */ -}}
+{{- $page := . }}
+<div class="lang-switch" role="group" aria-label="{{ i18n "switchLanguage" }}">
+  {{- range hugo.Sites }}
+    {{- $lang := .Language.Lang }}
+    {{- if eq $lang $page.Language.Lang }}
+  <span aria-current="true" lang="{{ $lang }}">{{ .Language.Label }}</span>
+    {{- else }}
+      {{- $target := "" }}
+      {{- range $page.Translations }}{{ if eq .Language.Lang $lang }}{{ $target = .RelPermalink }}{{ end }}{{ end }}
+      {{- if not $target }}{{ $target = cond (eq $lang "en") "/" (printf "/%s/" $lang) }}{{ end }}
+  <a href="{{ $target }}" hreflang="{{ $lang }}" lang="{{ $lang }}">{{ .Language.Label }}</a>
+    {{- end }}
+  {{- end }}
+</div>

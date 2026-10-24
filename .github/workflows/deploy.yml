@@ -31,7 +31,7 @@ jobs:
       - name: Build site
         run: hugo --gc --minify -d public
 
-      - name: Render CV PDF (max 2 pages)
+      - name: Render CV PDFs, EN and RU (max 2 pages each)
         run: ./scripts/build-cv-pdf.sh public
 
       - name: Check internal links
@@ -73,7 +73,7 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
         run: |
           base="${SITE_URL%/}/"
-          for path in "" cv/ cv/Galust_Arakelyan_DevOps.pdf; do
+          for path in "" cv/ cv/Galust_Arakelyan_DevOps.pdf ru/ ru/cv/ ru/cv/Galust_Arakelyan_DevOps_RU.pdf; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "${base}${path}")
             echo "${base}${path} -> $code"
             [ "$code" = 200 ]

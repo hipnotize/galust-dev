@@ -1,4 +1,4 @@
-# Single source for the /cv/ page and the PDF. Edit here, push, and CI rebuilds both.
+# Single source for the /cv/ page and the English PDF; data/cv/ru.yaml is the Russian twin. Edit here, push, and CI rebuilds both.
 name: "Galust Arakelyan"
 title: "DevOps Engineer"
 role: "DevOps Engineer · Kubernetes · Cloud & On-Prem Infrastructure"

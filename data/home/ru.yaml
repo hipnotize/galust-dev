@@ -1,0 +1,56 @@
+# Главная на русском: терминал, цифры и журнал инцидентов. Цифры из реальной работы, см. data/cv/ru.yaml.
+tagline: ["Держу прод в рабочем состоянии — и ", "поднимаю его", ", когда он падает."]
+lead: "DevOps-инженер: Kubernetes, облака и своё железо. Сейчас отвечаю за прод финтех-группы и учу будущих DevOps-инженеров в ProstoDevops."
+
+terminal:
+  - cmd: "whoami"
+    out: |-
+      Галуст Аракелян — DevOps-инженер
+  - cmd: "kubectl get engineer galust -o wide"
+    out: |-
+      NAME     EXPERIENCE   CLUSTERS   INCIDENTS   STUDENTS   STATUS
+      galust   ~7y          8          ~50         ~100       Running
+  - cmd: "cat focus.txt"
+    out: |-
+      аварийное восстановление · kubernetes · vault · terraform · gitlab ci
+
+stats:
+  - value: "~7"
+    label: "лет в Linux-инфраструктуре и DevOps"
+  - value: "8"
+    label: "Kubernetes-кластеров вёл руками"
+  - value: "~50"
+    label: "инцидентов разобрал по фактам"
+  - value: "~100"
+    label: "учеников веду как ментор"
+
+incidents:
+  - id: "INC-01"
+    sev: "SEV-1"
+    title: "Облачный провайдер потерял две из трёх зон"
+    symptom: "Прод лежит, у оставшихся нод нет интернета, хранилище провайдера только на чтение."
+    cause: "Региональная авария у провайдера; NAT-шлюз остался в мёртвой зоне."
+    fix: "Запустил Velero вне кластера и снял 10 466 объектов, сохранил 123 образа и данные Vault, Redis, RabbitMQ, Redpanda, затем восстановил всё на новом Kubernetes в офисе."
+    result: "Состояние прода поднято на Talos за один день."
+    link: "/blog/velero-without-internet/"
+  - id: "INC-02"
+    sev: "SEV-2"
+    title: "Redis Sentinel упал по OOM при обновлении образа"
+    symptom: "Прод-нода Redis ушла в OOM сразу после выкатки."
+    cause: "Дрейф чарта: новый чарт применил лимит по умолчанию 192 MiB, а живым подам нужно было 4 GiB."
+    fix: "Откатил, перенёс реальные лимиты в Git, вычистил зависшее состояние Helm и Terraform."
+    result: "3/3 ноды в строю, кворум Sentinel 3."
+  - id: "INC-03"
+    sev: "SEV-3"
+    title: "Terraform plan падает с 503 в CI"
+    symptom: "Каждый plan в одном проекте падал на чтении remote state из GitLab."
+    cause: "В раннере стоял NO_PROXY заглавными буквами без хоста GitLab, и запросы к state шли через прокси."
+    fix: "Задал NO_PROXY на уровне проекта и отдельно доказал, что API терял переменные пайплайна."
+    result: "State отвечает за ~0,07 с, пайплайн зелёный."
+  - id: "INC-04"
+    sev: "SEV-2"
+    title: "403 на всех ингрессах с белым списком после переезда"
+    symptom: "Пользователи из VPN получали 403 на всех ингрессах с белым списком IP."
+    cause: "externalTrafficPolicy: Cluster прятал адрес клиента, и белые списки видели только адреса нод."
+    fix: "Переключил на Local и скриптом обновил белые списки с сохранением прежних значений."
+    result: "Исправлено 132 из 136 ингрессов за один проход."

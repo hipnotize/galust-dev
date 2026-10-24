@@ -1,12 +1,12 @@
 {{- /* Standalone page with no site chrome and no external files: CI prints it to PDF from file://. */ -}}
 <!doctype html>
-<html lang="en">
+<html lang="{{ site.Language.Locale }}">
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>{{ hugo.Data.cv.name }} — {{ hugo.Data.cv.title }}</title>
-<meta name="author" content="{{ hugo.Data.cv.name }}">
-<meta name="description" content="{{ hugo.Data.cv.role }}">
+<title>{{ (index hugo.Data.cv site.Language.Lang).name }} — {{ (index hugo.Data.cv site.Language.Lang).title }}</title>
+<meta name="author" content="{{ (index hugo.Data.cv site.Language.Lang).name }}">
+<meta name="description" content="{{ (index hugo.Data.cv site.Language.Lang).role }}">
 <style>{{ (resources.Get "css/cv.css").Content | safeCSS }}</style>
 </head>
 <body class="cv-print">

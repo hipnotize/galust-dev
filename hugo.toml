@@ -1,30 +1,64 @@
 baseURL = "https://galust-dev.ru/"
-locale = "en"
-title = "Galust Arakelyan"
 enableRobotsTXT = true
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 
 [params]
-  description = "DevOps engineer: Kubernetes, cloud and on-prem infrastructure, disaster recovery."
   author = "Galust Arakelyan"
   github = "https://github.com/hipnotize"
   telegram = "https://t.me/thelastbroken"
-  cvPdf = "/cv/Galust_Arakelyan_DevOps.pdf"
 
-[menus]
-  [[menus.main]]
+[languages]
+  [languages.en]
+    locale = "en"
+    label = "EN"
+    title = "Galust Arakelyan"
+    weight = 1
+    [languages.en.params]
+      description = "DevOps engineer: Kubernetes, cloud and on-prem infrastructure, disaster recovery."
+      cvPdf = "/cv/Galust_Arakelyan_DevOps.pdf"
+  [languages.ru]
+    locale = "ru"
+    label = "RU"
+    title = "Галуст Аракелян"
+    weight = 2
+    [languages.ru.params]
+      description = "DevOps-инженер: Kubernetes, облака и своё железо, аварийное восстановление."
+      cvPdf = "/ru/cv/Galust_Arakelyan_DevOps_RU.pdf"
+
+[languages.en.menus]
+  [[languages.en.menus.main]]
     name = "Home"
     pageRef = "/"
     weight = 10
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "Blog"
     pageRef = "/blog"
     weight = 20
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "About"
     pageRef = "/about"
     weight = 30
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "CV"
+    pageRef = "/cv"
+    weight = 40
+
+[languages.ru.menus]
+  [[languages.ru.menus.main]]
+    name = "Главная"
+    pageRef = "/"
+    weight = 10
+  [[languages.ru.menus.main]]
+    name = "Блог"
+    pageRef = "/blog"
+    weight = 20
+  [[languages.ru.menus.main]]
+    name = "Обо-мне"
+    pageRef = "/about"
+    weight = 30
+  [[languages.ru.menus.main]]
+    name = "Резюме"
     pageRef = "/cv"
     weight = 40
 

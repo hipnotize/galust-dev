@@ -44,3 +44,7 @@
 .cv-print .cv-stack { margin-top: 2.5pt; }
 .cv-print .cv-stack b, .cv-print .cv-skills b { font-weight: 600; color: #333; }
 .cv-print .cv-skills p { margin-bottom: 2.2pt; }
+
+/* Russian runs ~15% longer than English: a touch tighter so it still fits two pages. */
+.cv-print:lang(ru) { font-size: 8.9pt; line-height: 1.3; }
+.cv-print:lang(ru) .cv li { margin-bottom: 1.2pt; }

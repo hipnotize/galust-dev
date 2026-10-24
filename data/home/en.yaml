@@ -1,5 +1,5 @@
-# Home page: terminal intro, stats and the incident log. Numbers come from real work, see data/cv.yaml.
-tagline: "I keep production running — and bring it back when it falls."
+# Home page: terminal intro, stats and the incident log. Numbers come from real work, see data/cv/en.yaml.
+tagline: ["I keep production running — and ", "bring it back", " when it falls."]
 lead: "DevOps engineer working with Kubernetes, cloud and on-prem infrastructure. Currently running production for a fintech lending group and mentoring future DevOps engineers at ProstoDevops."
 
 terminal:

@@ -5,7 +5,7 @@
     {{- if eq .Section "blog" }}
     <p class="meta">
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-      <span>{{ .ReadingTime }} min read</span>
+      <span>{{ .ReadingTime }} {{ i18n "minRead" }}</span>
       {{- with .GetTerms "tags" }}
       <span class="tags">{{ range . }}<a href="{{ .RelPermalink }}">#{{ .Name }}</a>{{ end }}</span>
       {{- end }}

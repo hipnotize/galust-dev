@@ -1,18 +1,18 @@
 {{ define "main" }}
-{{- $home := hugo.Data.home }}
+{{- $home := index hugo.Data.home site.Language.Lang }}
 <section class="hero">
   <div>
-    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>on call · DevOps engineer</p>
-    <h1>{{ replace $home.tagline "bring it back" "<span class=\"hl\">bring it back</span>" | safeHTML }}</h1>
+    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>{{ i18n "eyebrow" }}</p>
+    <h1>{{ index $home.tagline 0 }}<span class="hl">{{ index $home.tagline 1 }}</span>{{ index $home.tagline 2 }}</h1>
     <p class="lead">{{ $home.lead }}</p>
     <div class="actions">
-      <a class="button primary" href="{{ "/cv/" | relURL }}">View CV</a>
-      <a class="button" href="{{ site.Params.cvPdf | relURL }}" download>Download PDF</a>
+      <a class="button primary" href="{{ "/cv/" | relLangURL }}">{{ i18n "viewCV" }}</a>
+      <a class="button" href="{{ site.Params.cvPdf }}" download>{{ i18n "downloadPDF" }}</a>
       <a class="button" href="{{ site.Params.telegram }}">Telegram</a>
     </div>
   </div>
 
-  <div class="terminal" aria-label="Terminal introduction">
+  <div class="terminal" aria-label="{{ i18n "terminalLabel" }}">
     <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>galust@prod: ~</span></div>
     <pre>
       {{- range $home.terminal -}}
@@ -22,7 +22,7 @@
   </div>
 </section>
 
-<section class="section" aria-label="In numbers">
+<section class="section" aria-label="{{ i18n "inNumbers" }}">
   <ul class="stats">
     {{- range $home.stats }}
     <li class="stat"><b>{{ .value }}</b><span>{{ .label }}</span></li>
@@ -32,21 +32,21 @@
 
 <section class="section">
   <div class="section-head">
-    <h2 class="section-title">incident log</h2>
-    <span class="muted">real cases · symptom → root cause → fix</span>
+    <h2 class="section-title">{{ i18n "incidentLog" }}</h2>
+    <span class="muted">{{ i18n "incidentHint" }}</span>
   </div>
   <ul class="incidents">
     {{- range $home.incidents }}
     <li class="incident">
-      <div class="incident-head"><span class="sev {{ lower .sev }}">{{ .sev }}</span><span>{{ .id }}</span><span class="resolved">● resolved</span></div>
+      <div class="incident-head"><span class="sev {{ lower .sev }}">{{ .sev }}</span><span>{{ .id }}</span><span class="resolved">{{ i18n "resolved" }}</span></div>
       <h3>{{ .title }}</h3>
       <dl>
-        <dt>symptom</dt><dd>{{ .symptom }}</dd>
-        <dt>cause</dt><dd>{{ .cause }}</dd>
-        <dt>fix</dt><dd>{{ .fix }}</dd>
-        <dt>result</dt><dd>{{ .result }}</dd>
+        <dt>{{ i18n "symptom" }}</dt><dd>{{ .symptom }}</dd>
+        <dt>{{ i18n "cause" }}</dt><dd>{{ .cause }}</dd>
+        <dt>{{ i18n "fix" }}</dt><dd>{{ .fix }}</dd>
+        <dt>{{ i18n "result" }}</dt><dd>{{ .result }}</dd>
       </dl>
-      {{- with .link }}<a class="more" href="{{ . | relURL }}">read the write-up →</a>{{ end }}
+      {{- with .link }}<a class="more" href="{{ . | relLangURL }}">{{ i18n "readWriteup" }}</a>{{ end }}
     </li>
     {{- end }}
   </ul>
@@ -56,16 +56,16 @@
 {{- with $posts }}
 <section class="section">
   <div class="section-head">
-    <h2 class="section-title">latest posts</h2>
-    <a href="{{ "/blog/" | relURL }}">ls blog/ →</a>
+    <h2 class="section-title">{{ i18n "latestPosts" }}</h2>
+    <a href="{{ "/blog/" | relLangURL }}">{{ i18n "allPosts" }}</a>
   </div>
   {{ partial "post-list.html" (first 5 .) }}
 </section>
 {{- end }}
 
-{{- with hugo.Data.cv.projects }}
+{{- with (index hugo.Data.cv site.Language.Lang).projects }}
 <section class="section">
-  <div class="section-head"><h2 class="section-title">side projects</h2></div>
+  <div class="section-head"><h2 class="section-title">{{ i18n "sideProjects" }}</h2></div>
   <ul class="cards">
     {{- range . }}
     <li class="card">

@@ -1,5 +1,5 @@
-{{- /* Renders data/cv.yaml. Used by the /cv/ page and by the print page that CI turns into the PDF. */ -}}
-{{- $cv := hugo.Data.cv }}
+{{- /* Renders data/cv/<lang>.yaml. Used by the /cv/ page and by the print page that CI turns into the PDF. */ -}}
+{{- $cv := index hugo.Data.cv site.Language.Lang }}
 <div class="cv">
   <header class="cv-header">
     <h1>{{ $cv.name }}</h1>
@@ -14,21 +14,21 @@
     </p>
   </header>
 
-  <h2>Summary</h2>
+  <h2>{{ i18n "cvSummary" }}</h2>
   <p>{{ $cv.summary }}</p>
 
-  <h2>Experience</h2>
+  <h2>{{ i18n "cvExperience" }}</h2>
   {{- range $cv.experience }}
   <div class="cv-job">
     <div class="cv-job-head"><b>{{ .title }}</b><span class="cv-dates">{{ .dates }}</span></div>
     <p class="cv-company">{{ .company }}{{ with .note }} — {{ . }}{{ end }}</p>
     <ul>{{ range .bullets }}<li>{{ . }}</li>{{ end }}</ul>
-    {{- with .stack }}<p class="cv-stack"><b>Stack:</b> {{ delimit . ", " }}</p>{{ end }}
+    {{- with .stack }}<p class="cv-stack"><b>{{ i18n "cvStack" }}:</b> {{ delimit . ", " }}</p>{{ end }}
   </div>
   {{- end }}
 
   {{- with $cv.projects }}
-  <h2>Projects</h2>
+  <h2>{{ i18n "cvProjects" }}</h2>
   {{- range . }}
   <div class="cv-job">
     <div class="cv-job-head"><b>{{ .name }}{{ with .url }} — <a href="{{ . }}">{{ replaceRE "^https?://" "" . }}</a>{{ end }}</b><span class="cv-dates">{{ .dates }}</span></div>
@@ -37,18 +37,18 @@
   {{- end }}
   {{- end }}
 
-  <h2>Skills</h2>
+  <h2>{{ i18n "cvSkills" }}</h2>
   <div class="cv-skills">
     {{- range $cv.skills }}
     <p><b>{{ .group }}:</b> {{ delimit .items ", " }}</p>
     {{- end }}
   </div>
 
-  <h2>Education</h2>
+  <h2>{{ i18n "cvEducation" }}</h2>
   {{- range $cv.education }}
   <p><b>{{ .school }}</b> — {{ .field }}, {{ .year }}</p>
   {{- end }}
 
-  <h2>Languages</h2>
+  <h2>{{ i18n "cvLanguages" }}</h2>
   <p>{{ delimit $cv.languages " · " }}</p>
 </div>

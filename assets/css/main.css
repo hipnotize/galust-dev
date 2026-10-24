@@ -84,6 +84,11 @@ img { max-width: 100%; height: auto; }
 .site-nav a:hover { color: var(--heading); text-decoration: none; }
 .site-nav a[aria-current="page"] { color: var(--accent); }
 .site-nav .social a { color: var(--text); }
+.lang-switch { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); font: 600 0.76rem/1 var(--mono); }
+.lang-switch a, .lang-switch span { padding: 7px 9px; }
+.lang-switch a { color: var(--muted); }
+.lang-switch a:hover { color: var(--heading); text-decoration: none; background: var(--surface-2); }
+.lang-switch span[aria-current] { background: var(--accent); color: var(--on-accent); }
 .theme-toggle {
   background: var(--surface); border: 1px solid var(--border); padding: 5px; cursor: pointer;
   color: var(--text); line-height: 0; border-radius: 8px;

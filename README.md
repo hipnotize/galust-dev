@@ -1,16 +1,16 @@
 # galust-dev.ru
 
-Personal site of Galust Arakelyan, DevOps engineer: blog, about and CV.
+Personal site of Galust Arakelyan, DevOps engineer: blog, about and CV, in English and Russian (`/ru/`, switch in the header).
 
 **Live:** https://galust-dev.ru
 
 ## How it works
 
 - [Hugo](https://gohugo.io) with a hand-written layout, no theme and no JavaScript frameworks. Light and dark mode.
-- The CV lives in one file, [`data/cv.yaml`](data/cv.yaml). Hugo renders it twice: as the [`/cv/`](https://galust-dev.ru/cv/) page and as a standalone print page.
+- The CV lives in data: [`data/cv/en.yaml`](data/cv/en.yaml) and [`data/cv/ru.yaml`](data/cv/ru.yaml). Hugo renders each twice: as the [`/cv/`](https://galust-dev.ru/cv/) page and as a standalone print page. Home page content is in `data/home/`, UI strings in `i18n/`.
 - On every push to `main`, GitHub Actions:
   1. builds the site with a pinned Hugo version;
-  2. prints the CV page to PDF with headless Chrome and fails if it runs past two pages;
+  2. prints both CV pages to PDF with headless Chrome and fails if either runs past two pages;
   3. checks every internal link and asset;
   4. uploads the result to my own nginx server with rsync over SSH and smoke-tests the live URLs.
 
@@ -35,11 +35,12 @@ Needs Hugo extended 0.168+, Python 3 and Google Chrome.
 ## Layout
 
 ```
-data/cv.yaml              CV content
-content/                  pages and blog posts (Markdown)
+data/cv/, data/home/     CV and home page content, per language
+i18n/                     interface strings (en, ru)
+content/                  pages and blog posts (Markdown, *.ru.md for Russian)
 layouts/                  templates
 assets/css/               styles: site, CV and syntax highlighting
-scripts/build-cv-pdf.sh   CV page -> PDF, page-count check
+scripts/build-cv-pdf.sh   CV pages -> PDF, page-count check
 scripts/check_links.py    internal link checker
 deploy/                   one-time server setup and the nginx site config
 .github/workflows/        build and deploy pipeline

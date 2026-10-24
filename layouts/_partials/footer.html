@@ -1,4 +1,4 @@
 <footer class="site-footer">
-  <span>© {{ now.Year }} {{ site.Params.author }} · <a href="{{ "index.xml" | relURL }}">rss</a></span>
-  <span><span class="ok">●</span> built with hugo · deployed by github actions · {{ now.UTC.Format "2006-01-02 15:04 UTC" }}</span>
+  <span>© {{ now.Year }} {{ site.Params.author }} · <a href="{{ "index.xml" | relLangURL }}">rss</a></span>
+  <span><span class="ok">●</span> {{ i18n "footerBuilt" }} · {{ now.UTC.Format "2006-01-02 15:04 UTC" }}</span>
 </footer>
