@@ -75,14 +75,6 @@ experience:
       - "Сделал 20 колод уроков (487 слайдов) и практикумы: Linux, сети, Docker, Kubernetes (кластер на kubeadm с нуля, RBAC, бэкап etcd, обновления), Terraform, Ansible, Argo CD."
       - "Написал регламент кураторов; провожу еженедельные созвоны кураторов, ревью один на один и пробные собеседования."
 
-projects:
-  - name: "Xelvix VPN"
-    url: "https://xelvix.ru"
-    dates: "2026 — н. в. · свой проект"
-    bullets:
-      - "Построил и веду коммерческий VPN-сервис на нескольких нодах: мастер и 3 ноды на VLESS + Reality (3x-ui), около 50 платящих пользователей и 25 онлайн в сутки."
-      - "Написал сервисы на Python для оплаты, ссылок подписки в 5 форматах клиентов с раздельной маршрутизацией и мониторинга нод с алертами в Telegram; Nginx, certbot и systemd на каждой ноде."
-
 skills:
   - group: "Контейнеры и оркестрация"
     items: [Kubernetes, Managed Kubernetes, Talos Linux, Kubespray, kubeadm, Helm, werf, Argo CD, Docker, containerd, Istio, ingress-nginx, Traefik, MetalLB, Cilium, Calico, cert-manager, HPA, StatefulSets]

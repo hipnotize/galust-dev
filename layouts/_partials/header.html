@@ -1,17 +1,12 @@
 <header class="site-header">
-  <a class="prompt" href="{{ "/" | relLangURL }}" aria-label="{{ site.Title }}, {{ i18n "home" }}"><span class="user">galust@prod</span>:<span class="path">~</span>$<span class="cursor" aria-hidden="true"></span></a>
+  <a class="brand" href="{{ "/" | relLangURL }}">{{ site.Title }}</a>
   <nav class="site-nav" aria-label="Main">
     <ul class="menu">
       {{- $current := . }}
       {{- range site.Menus.main }}
         {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
-        {{- if and (eq .PageRef "/") (not $current.IsHome) }}{{ $active = false }}{{ end }}
-        <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ if eq .PageRef "/" }}~{{ else }}./{{ lower .Name }}{{ end }}</a></li>
+        <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
       {{- end }}
-    </ul>
-    <ul class="social">
-      <li><a href="{{ site.Params.github }}" rel="me">github</a></li>
-      <li><a href="{{ site.Params.telegram }}" rel="me">telegram</a></li>
     </ul>
     {{ partial "lang-switch.html" . }}
     <button class="theme-toggle" type="button" aria-label="{{ i18n "toggleTheme" }}" title="{{ i18n "toggleTheme" }}">
@@ -22,7 +17,7 @@
 </header>
 <script>
   document.querySelector(".theme-toggle").addEventListener("click", function () {
-    var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (e) {}
   });

@@ -7,6 +7,7 @@ defaultContentLanguageInSubdir = false
   author = "Galust Arakelyan"
   github = "https://github.com/hipnotize"
   telegram = "https://t.me/thelastbroken"
+  repo = "https://github.com/hipnotize/galust-dev"
 
 [languages]
   [languages.en]
@@ -28,11 +29,7 @@ defaultContentLanguageInSubdir = false
 
 [languages.en.menus]
   [[languages.en.menus.main]]
-    name = "Home"
-    pageRef = "/"
-    weight = 10
-  [[languages.en.menus.main]]
-    name = "Blog"
+    name = "Writing"
     pageRef = "/blog"
     weight = 20
   [[languages.en.menus.main]]
@@ -46,15 +43,11 @@ defaultContentLanguageInSubdir = false
 
 [languages.ru.menus]
   [[languages.ru.menus.main]]
-    name = "Главная"
-    pageRef = "/"
-    weight = 10
-  [[languages.ru.menus.main]]
-    name = "Блог"
+    name = "Статьи"
     pageRef = "/blog"
     weight = 20
   [[languages.ru.menus.main]]
-    name = "Обо-мне"
+    name = "Обо мне"
     pageRef = "/about"
     weight = 30
   [[languages.ru.menus.main]]

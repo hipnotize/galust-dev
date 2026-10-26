@@ -4,10 +4,10 @@
     <h1>{{ .Title }}</h1>
     {{- if eq .Section "blog" }}
     <p class="meta">
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
       <span>{{ .ReadingTime }} {{ i18n "minRead" }}</span>
       {{- with .GetTerms "tags" }}
-      <span class="tags">{{ range . }}<a href="{{ .RelPermalink }}">#{{ .Name }}</a>{{ end }}</span>
+      <span class="tags">{{ range . }}<a href="{{ .RelPermalink }}">{{ .Name }}</a>{{ end }}</span>
       {{- end }}
     </p>
     {{- end }}

@@ -1,10 +1,7 @@
 {{ define "main" }}
-<section class="section">
-  <div class="terminal">
-    <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>galust@prod: ~</span></div>
-    <pre><span class="tline"><span class="ps1">$ </span><span class="cmd">curl -I {{ "" }}<span id="path">this-page</span></span></span><span class="tline out">HTTP/2 404 Not Found</span><span class="tline"><span class="ps1">$ </span><span class="cmd">cd ~</span><span class="caret" aria-hidden="true"></span></span></pre>
-  </div>
-  <p class="lead" style="margin-top:24px">{{ i18n "notFound" }} <a href="{{ "/" | relLangURL }}">{{ i18n "backHome" }}</a></p>
+<section class="hero">
+  <p class="kicker">404</p>
+  <h1>{{ i18n "notFound" }}</h1>
+  <p class="lead"><a href="{{ "/" | relLangURL }}">{{ i18n "backHome" }}</a></p>
 </section>
-<script>document.getElementById("path").textContent = location.pathname;</script>
 {{ end }}

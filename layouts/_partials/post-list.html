@@ -1,7 +1,7 @@
 <ul class="post-list">
   {{- range . }}
   <li>
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
   </li>
   {{- end }}

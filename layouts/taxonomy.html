@@ -4,7 +4,7 @@
 </header>
 <ul class="tag-cloud">
   {{- range .Data.Terms.Alphabetical }}
-  <li><a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle | lower }}</a> <span>{{ .Count }}</span></li>
+  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle | lower }}</a> <span>{{ .Count }}</span></li>
   {{- end }}
 </ul>
 {{ end }}

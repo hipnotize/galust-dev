@@ -75,14 +75,6 @@ experience:
       - "Created 20 lesson decks (487 slides) and hands-on labs: Linux, networking, Docker, Kubernetes (kubeadm cluster from scratch, RBAC, etcd backup, upgrades), Terraform, Ansible, Argo CD."
       - "Wrote the curator handbook; run weekly curator syncs, 1:1 reviews and mock interviews."
 
-projects:
-  - name: "Xelvix VPN"
-    url: "https://xelvix.ru"
-    dates: "2026 – Present · own project"
-    bullets:
-      - "Built and run a commercial multi-node VPN service: a master and 3 nodes on VLESS + Reality (3x-ui), about 50 paying users and 25 online daily."
-      - "Wrote Python services for payments, subscription links in 5 client formats with split routing, and node monitoring with Telegram alerts; Nginx, certbot and systemd on every node."
-
 skills:
   - group: "Containers & orchestration"
     items: [Kubernetes, Managed Kubernetes, Talos Linux, Kubespray, kubeadm, Helm, werf, Argo CD, Docker, containerd, Istio, ingress-nginx, Traefik, MetalLB, Cilium, Calico, cert-manager, HPA, StatefulSets]

@@ -22,7 +22,8 @@
     (function () {
       var t;
       try { t = localStorage.getItem("theme"); } catch (e) {}
-      document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      if (t !== "light" && t !== "dark") t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
     })();
   </script>
   {{- $css := slice (resources.Get "css/main.css") (resources.Get "css/syntax.css") (resources.Get "css/cv.css") | resources.Concat "css/site.css" | minify | fingerprint }}

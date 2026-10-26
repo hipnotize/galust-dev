@@ -1,52 +1,38 @@
 {{ define "main" }}
 {{- $home := index hugo.Data.home site.Language.Lang }}
 <section class="hero">
-  <div>
-    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>{{ i18n "eyebrow" }}</p>
-    <h1>{{ index $home.tagline 0 }}<span class="hl">{{ index $home.tagline 1 }}</span>{{ index $home.tagline 2 }}</h1>
-    <p class="lead">{{ $home.lead }}</p>
-    <div class="actions">
-      <a class="button primary" href="{{ "/cv/" | relLangURL }}">{{ i18n "viewCV" }}</a>
-      <a class="button" href="{{ site.Params.cvPdf }}" download>{{ i18n "downloadPDF" }}</a>
-      <a class="button" href="{{ site.Params.telegram }}">Telegram</a>
-    </div>
-  </div>
-
-  <div class="terminal" aria-label="{{ i18n "terminalLabel" }}">
-    <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>galust@prod: ~</span></div>
-    <pre>
-      {{- range $home.terminal -}}
-<span class="tline" data-cmd><span class="ps1">$ </span><span class="cmd">{{ .cmd }}</span></span><span class="tline out">{{ .out }}</span>
-      {{- end -}}
-<span class="tline" data-end><span class="ps1">$ </span><span class="caret" aria-hidden="true"></span></span></pre>
+  <p class="kicker">{{ $home.role }}</p>
+  <h1>{{ site.Title }}</h1>
+  <p class="lead">{{ $home.lead }}</p>
+  <div class="actions">
+    <a class="button primary" href="{{ "/cv/" | relLangURL }}">{{ i18n "viewCV" }}</a>
+    <a class="button" href="{{ site.Params.telegram }}">{{ i18n "contact" }}</a>
+    <a class="text-link" href="{{ site.Params.cvPdf }}" download>{{ i18n "downloadPDF" }}</a>
   </div>
 </section>
 
-<section class="section" aria-label="{{ i18n "inNumbers" }}">
-  <ul class="stats">
-    {{- range $home.stats }}
-    <li class="stat"><b>{{ .value }}</b><span>{{ .label }}</span></li>
-    {{- end }}
-  </ul>
-</section>
+<ul class="facts" aria-label="{{ i18n "inNumbers" }}">
+  {{- range $home.facts }}
+  <li><b>{{ .value }}</b>{{ .label }}</li>
+  {{- end }}
+</ul>
 
-<section class="section">
+<section class="section" id="work">
   <div class="section-head">
-    <h2 class="section-title">{{ i18n "incidentLog" }}</h2>
-    <span class="muted">{{ i18n "incidentHint" }}</span>
+    <h2 class="section-title">{{ i18n "selectedWork" }}</h2>
+    <a href="{{ "/cv/" | relLangURL }}">{{ i18n "moreInCV" }}</a>
   </div>
-  <ul class="incidents">
-    {{- range $home.incidents }}
-    <li class="incident">
-      <div class="incident-head"><span class="sev {{ lower .sev }}">{{ .sev }}</span><span>{{ .id }}</span><span class="resolved">{{ i18n "resolved" }}</span></div>
-      <h3>{{ .title }}</h3>
-      <dl>
-        <dt>{{ i18n "symptom" }}</dt><dd>{{ .symptom }}</dd>
-        <dt>{{ i18n "cause" }}</dt><dd>{{ .cause }}</dd>
-        <dt>{{ i18n "fix" }}</dt><dd>{{ .fix }}</dd>
-        <dt>{{ i18n "result" }}</dt><dd>{{ .result }}</dd>
-      </dl>
-      {{- with .link }}<a class="more" href="{{ . | relLangURL }}">{{ i18n "readWriteup" }}</a>{{ end }}
+  <ul class="cases">
+    {{- range $home.cases }}
+    <li class="case">
+      <div class="case-meta">{{ .area }}<br>{{ .year }}</div>
+      <div>
+        <h3>{{ .title }}</h3>
+        <p>{{ .summary }}</p>
+        <p class="outcome">{{ .outcome }}</p>
+        <p class="stack">{{ delimit .stack " · " }}</p>
+        {{- with .link }}<a class="more" href="{{ . | relLangURL }}">{{ i18n "readWriteup" }}</a>{{ end }}
+      </div>
     </li>
     {{- end }}
   </ul>
@@ -56,49 +42,20 @@
 {{- with $posts }}
 <section class="section">
   <div class="section-head">
-    <h2 class="section-title">{{ i18n "latestPosts" }}</h2>
+    <h2 class="section-title">{{ i18n "writing" }}</h2>
     <a href="{{ "/blog/" | relLangURL }}">{{ i18n "allPosts" }}</a>
   </div>
   {{ partial "post-list.html" (first 5 .) }}
 </section>
 {{- end }}
 
-{{- with (index hugo.Data.cv site.Language.Lang).projects }}
 <section class="section">
-  <div class="section-head"><h2 class="section-title">{{ i18n "sideProjects" }}</h2></div>
-  <ul class="cards">
-    {{- range . }}
-    <li class="card">
-      <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
-      <p>{{ index .bullets 0 }}</p>
-    </li>
-    {{- end }}
-  </ul>
+  <div class="section-head"><h2 class="section-title">{{ i18n "mentoring" }}</h2></div>
+  <div class="prose-block"><p>{{ $home.mentoring }}</p></div>
 </section>
-{{- end }}
 
-<script>
-  (function () {
-    var term = document.querySelector(".terminal");
-    if (!term || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
-    var lines = Array.prototype.slice.call(term.querySelectorAll(".tline"));
-    term.classList.add("typing");
-    var i = 0;
-    function next() {
-      if (i >= lines.length) return;
-      var line = lines[i++];
-      var cmd = line.hasAttribute("data-cmd") && line.querySelector(".cmd");
-      line.classList.add("shown");
-      if (!cmd) { setTimeout(next, 180); return; }
-      var full = cmd.textContent, n = 0;
-      cmd.textContent = "";
-      (function type() {
-        cmd.textContent = full.slice(0, ++n);
-        if (n < full.length) setTimeout(type, 28 + Math.random() * 40);
-        else setTimeout(next, 260);
-      })();
-    }
-    setTimeout(next, 350);
-  })();
-</script>
+<section class="section">
+  <div class="section-head"><h2 class="section-title">{{ i18n "contactTitle" }}</h2></div>
+  <div class="prose-block"><p>{{ $home.contact | markdownify }}</p></div>
+</section>
 {{ end }}
