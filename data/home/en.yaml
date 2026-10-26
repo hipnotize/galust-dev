@@ -1,6 +1,6 @@
 # Home page content. Numbers come from real work, see data/cv/en.yaml.
 role: "DevOps / Platform Engineer"
-lead: "I design, run and recover production infrastructure: Kubernetes, Vault, stateful services and CI/CD, in the cloud and on bare metal. Most recently I brought a fintech group's production back after its cloud provider lost two of three availability zones, and prepared its move to a new provider."
+lead: "I build and run production infrastructure: Kubernetes platforms, CI/CD, secrets, observability and the stateful services behind them — in the cloud and on bare metal. I've done it for a fintech group, a mobile operator and airports, from Linux server fleets to several Kubernetes clusters."
 
 facts:
   - value: "~7 years"
@@ -9,8 +9,6 @@ facts:
     label: "Kubernetes clusters run hands-on"
   - value: "~50"
     label: "incidents root-caused"
-  - value: "~100"
-    label: "engineers mentored"
 
 cases:
   - area: "Disaster recovery"
@@ -39,6 +37,5 @@ cases:
     outcome: "47.6K keys moved with 13.7 minutes of downtime and zero drift."
     stack: [Vault, Raft, Terraform, S3]
 
-mentoring: "I'm a senior curator at ProstoDevops, an online DevOps school: about a hundred students across two cohorts, reviews and mock interviews, and hands-on courses on Linux, networking, Docker, Kubernetes, Terraform, Ansible and Argo CD. My own group closed 59 of 60 technical defenses."
 
 contact: "The fastest way to reach me is [Telegram](https://t.me/thelastbroken); email works too: [galust.arakelyan25@gmail.com](mailto:galust.arakelyan25@gmail.com)."

@@ -16,7 +16,7 @@ defaultContentLanguageInSubdir = false
     title = "Galust Arakelyan"
     weight = 1
     [languages.en.params]
-      description = "DevOps engineer: Kubernetes, cloud and on-prem infrastructure, disaster recovery."
+      description = "DevOps engineer: Kubernetes platforms, CI/CD, cloud and on-prem infrastructure."
       cvPdf = "/cv/Galust_Arakelyan_DevOps.pdf"
   [languages.ru]
     locale = "ru"
@@ -24,7 +24,7 @@ defaultContentLanguageInSubdir = false
     title = "Галуст Аракелян"
     weight = 2
     [languages.ru.params]
-      description = "DevOps-инженер: Kubernetes, облака и своё железо, аварийное восстановление."
+      description = "DevOps-инженер: Kubernetes-платформы, CI/CD, облака и своё железо."
       cvPdf = "/ru/cv/Galust_Arakelyan_DevOps_RU.pdf"
 
 [languages.en.menus]

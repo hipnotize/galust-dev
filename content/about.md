@@ -1,11 +1,11 @@
 ---
 title: "About"
-description: "Galust Arakelyan, DevOps engineer and mentor."
+description: "Galust Arakelyan, DevOps engineer."
 ---
 
 I'm Galust, a DevOps engineer. Right now I run production Kubernetes for a fintech lending group: managed Kubernetes in the cloud, VMware and our own hardware, plus all the stateful pieces that come with money — PostgreSQL, RabbitMQ, Redis, Redpanda and Vault.
 
-The part of the job I value most is what happens when things break. In October 2026 our cloud provider lost two of its three availability zones within a few days. Production went down, the surviving worker nodes had no internet access, and everything had to be pulled out and started somewhere else. I backed up the clusters with Velero running outside the cluster, saved the images and the state of Vault, Redis, RabbitMQ and Redpanda, and then restored them on new Kubernetes in our office within a day. The backup part is described in [this post](/blog/velero-without-internet/).
+A recent example: in October 2026 our cloud provider lost two of its three availability zones within a few days. Production went down, the surviving worker nodes had no internet access, and everything had to be pulled out and started somewhere else. I backed up the clusters with Velero running outside the cluster, saved the images and the state of Vault, Redis, RabbitMQ and Redpanda, and then restored them on new Kubernetes in our office within a day. The backup part is described in [this post](/blog/velero-without-internet/).
 
 ## How I work
 
@@ -15,7 +15,7 @@ The part of the job I value most is what happens when things break. In October 2
 
 ## Teaching
 
-I'm a senior curator at ProstoDevops, an online DevOps school. I look after about a hundred students, run reviews and mock interviews, and build lessons and hands-on labs on Linux, networking, Docker, Kubernetes, Terraform, Ansible and Argo CD. Explaining something simply is the best check that I understand it myself.
+On the side I mentor DevOps students at ProstoDevops, an online school: code reviews, mock interviews and hands-on labs.
 
 ## Contact
 
